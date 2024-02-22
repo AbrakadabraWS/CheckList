@@ -1,0 +1,36 @@
+$LineBox--bgFirstColor: #ffffff;
+$LineBox--bgSecondColor: #D4E4AD;
+$LineBox--BordersColor: #678c53;
+
+// .LineBox {
+//     display: flex;
+//     width: 100%;
+//     height: 40px;
+//     box-sizing: border-box;
+//     margin-top: 4px;
+//     border-bottom: 2px solid $LineBox--BordersColor;
+//     border-left: 2px solid $LineBox--BordersColor;
+//     border-radius: 0px 0px 0px 15px;
+//     align-items: center;
+//     justify-content: flex-start;
+
+// }
+
+.MultilineTextField_MainLine {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    margin-top: 4px;
+    background-color: $LineBox--bgFirstColor;
+    border: 2px solid $LineBox--BordersColor;
+    border-top: 0;
+    border-radius: 5px 5px 0px 15px;
+    font-size: 16px;
+
+}
+
+.MultilineTextField_MainLine:focus {
+    outline: none;
+    background-color: $LineBox--bgSecondColor;
+}

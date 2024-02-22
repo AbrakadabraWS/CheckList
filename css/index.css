@@ -1,0 +1,18 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+body {
+  margin: 0 0 0 0;
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  background-color: #D4E4AD;
+}/*# sourceMappingURL=index.css.map */

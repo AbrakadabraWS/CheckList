@@ -1,0 +1,20 @@
+$LineBox--bgFirstColor: #ffffff;
+$LineBox--bgSecondColor: #D4E4AD;
+$LineBox--BordersColor: #678c53;
+
+.LineBox__TextField {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background-color: $LineBox--bgFirstColor;
+    border: 2px solid $LineBox--BordersColor;
+    border-bottom: 0;
+    border-radius: 5px 5px 0px 0px;
+    font-size: 16px;
+
+}
+
+.LineBox__TextField:focus {
+    outline: none;
+    background-color: $LineBox--bgSecondColor;
+}

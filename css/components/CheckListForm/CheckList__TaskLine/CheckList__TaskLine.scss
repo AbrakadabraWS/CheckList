@@ -1,0 +1,39 @@
+$CheckSize: 16px;
+$LineBox--height: 38px;
+
+.CheckList__TaskLine__CheckButton {
+    display: flex;
+    width: $CheckSize;
+    height: $CheckSize;
+    box-sizing: border-box;
+    margin: calc(($LineBox--height - $CheckSize)/2);
+    border: 2px solid #678c53;
+    border-radius: calc($CheckSize/2);
+}
+
+.CheckList__TaskLine__CheckButton--Cleared {
+    @extend .CheckList__TaskLine__CheckButton;
+    background-color: #ffffff;
+}
+
+.CheckList__TaskLine__CheckButton--Checked {
+    @extend .CheckList__TaskLine__CheckButton;
+    background-color: #678c53;
+}
+
+.CheckList__TaskLine__CheckButton:hover {
+    background-color: #D4E4AD;
+}
+
+.CheckList__TaskLine__NameText {
+    white-space: nowrap;
+    margin-left: 8px;
+    font-size: 20px;
+}
+
+.CheckList__TaskLine__LineButtons {
+    display: flex;
+    flex-grow: 1;
+    justify-content: end;
+    height: 100%;
+}
