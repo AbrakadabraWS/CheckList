@@ -1,9 +1,11 @@
 
 
 const updateButtonsStyles = (buttonName, baseStyle) => {
+    var elNavBar__ButtonAllCheckLists = document.getElementById('NavBar__Button--AllСheckLists');
     var elNavBar__ButtonAllTasks = document.getElementById('NavBar__Button--AllTasks');
     var elNavBar__ButtonActiveTask = document.getElementById('NavBar__Button--ActiveTasks');
     var elNavBar__ButtonClosedTasc = document.getElementById('NavBar__Button--ClosedTasks');
+    elNavBar__ButtonAllCheckLists.className = buttonName === 'AllСheckLists' ? `${baseStyle} NavBar__Button--colorActive` : `${baseStyle} NavBar__Button--colorDefault`;
     elNavBar__ButtonAllTasks.className = buttonName === 'AllTasks' ? `${baseStyle} NavBar__Button--colorActive` : `${baseStyle} NavBar__Button--colorDefault`;
     elNavBar__ButtonActiveTask.className = buttonName === 'ActiveTasks' ? `${baseStyle} NavBar__Button--colorActive` : `${baseStyle} NavBar__Button--colorDefault`;
     elNavBar__ButtonClosedTasc.className = buttonName === 'ClosedTasks' ? `${baseStyle} NavBar__Button--colorActive` : `${baseStyle} NavBar__Button--colorDefault`;
@@ -21,6 +23,12 @@ const NavBar = () => {
     let elNavBar__SiteName = document.createElement('span');
     elNavBar__SiteName.className = 'NavBar__SiteName roboto-black-italic';
     elNavBar__SiteName.innerText = 'Чек-лист';
+
+    const cbAllСheckLists = () => {
+        console.log('Button AllTask click');
+        updateButtonsStyles('AllСheckLists', BUTTONS_CLASS_NAME);
+        updateMain('ChooseCheckListForm');
+    };
 
     const cbAllTask = () => {
         console.log('Button AllTask click');
@@ -41,6 +49,14 @@ const NavBar = () => {
     };
 
     elNavBar.appendChild(elNavBar__SiteName);
+    elNavBar.appendChild(
+        Button({
+            text: 'Чек-листы',
+            id: 'NavBar__Button--AllСheckLists',
+            className: `${BUTTONS_CLASS_NAME} NavBar__Button--colorDefault`,
+            onClick: cbAllСheckLists,
+        })
+    );
     elNavBar.appendChild(
         Button({
             text: 'Все задачи',
