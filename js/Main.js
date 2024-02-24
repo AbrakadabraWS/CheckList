@@ -4,7 +4,7 @@ const updateMain = (event, elMain = document.getElementById('Main')) => {
 
     elMain.innerHTML = '';
 
-    let activeCheckList = localStorage.getItem('activeCheckList');
+    let activeCheckList = getActiveCheckList();
 
     if (
         (
@@ -31,7 +31,7 @@ const updateMain = (event, elMain = document.getElementById('Main')) => {
             CreateOrUpdateTaskForm(elMain)
             break;
         case 'OpenCreateOrUpdateCheckListForm': // форма для создания нового чек листа
-            CreateOrUpdateCheckListForm(elMain, activeCheckList);
+            CreateOrUpdateCheckListForm(elMain);//, activeCheckList);
             break;
         default:    // на случай если обновление зоны Main вызвано с несуществующем событием
             let elMain__updateError = document.createElement('div');

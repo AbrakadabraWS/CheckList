@@ -1,3 +1,10 @@
+$scrollWidth: 10px;
+
+.CheckList__NameLine {
+    width: calc(100% - ($scrollWidth * 2));
+    margin-left: $scrollWidth;
+}
+
 .CheckList__NameLine__NameText {
     white-space: nowrap;
     margin-left: 8px;

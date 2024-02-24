@@ -3,6 +3,7 @@
 let localStorage = window.localStorage;
 // localStorage.clear();
 
+
 const setNewCheckList = (CheckListName) => {
     let checkLists = JSON.parse(localStorage.getItem('checkLists'));
 
@@ -15,6 +16,21 @@ const setNewCheckList = (CheckListName) => {
     }
     localStorage.setItem('checkLists', JSON.stringify(checkLists));
 
+}
+
+const getActiveCheckList = () => {
+    return localStorage.getItem('activeCheckList');
+}
+
+const getCheckLisitData = (activeCheckList) => {
+    return JSON.parse(localStorage.getItem(activeCheckList));
+}
+
+const getCheckLisits = () => {
+    return JSON.parse(localStorage.getItem('checkLists'));
+}
+const setactiveCheckList = (checkListName) => {
+    localStorage.setItem('activeCheckList', checkListName);
 }
 
 const deleteCheckList = (CheckListName) => {
@@ -37,7 +53,6 @@ const deleteCheckList = (CheckListName) => {
     }
 }
 
-
 const CreateNewCheckList = (CheckListName) => {
     let testCheckList = localStorage.getItem(CheckListName);
 
@@ -59,6 +74,19 @@ const CreateNewCheckList = (CheckListName) => {
         console.log(`Создан новый чек-лист: ${CheckListName}`)
         return 'The checklist has been created';
     }
+}
+
+const EditCheckListName = (oldCheckListName, newCheckListName) => {
+    let checkListData = JSON.parse(localStorage.getItem(oldCheckListName));
+    let checkListsArray = JSON.parse(localStorage.getItem('checkLists'));
+    let checkListIndex = checkListsArray.indexOf(oldCheckListName);
+
+    checkListsArray[checkListIndex] = newCheckListName;
+    checkListData.CheckListName = newCheckListName;
+    localStorage.setItem('activeCheckList', newCheckListName);
+    localStorage.setItem('checkLists', JSON.stringify(checkListsArray));
+    localStorage.setItem(newCheckListName, JSON.stringify(checkListData));
+    localStorage.removeItem(oldCheckListName);
 }
 
 /**

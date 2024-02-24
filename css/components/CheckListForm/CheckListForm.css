@@ -5,4 +5,50 @@
   width: 100%;
   height: 50px;
   font-size: 30px;
+}
+
+.CheckListForm__TasksArea {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: flex-start;
+  align-content: flex-start;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+}
+
+.CheckListForm__TasksArea::-webkit-scrollbar {
+  width: 8px;
+  background-color: #D4E4AD;
+}
+
+.CheckListForm__TasksArea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #678c53;
+}
+
+.CheckListForm__TasksArea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #D4E4AD;
+  border-radius: 4px;
+  background-color: #ffffff;
+}
+
+.CheckListForm__ButtonCreateFirstTask {
+  height: 40px;
+  width: calc(100% - 20px);
+  margin-left: 10px;
+  margin-top: 4px;
+  padding-inline: 20px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-size: 16px;
+  color: #678c53;
+  border: 2px solid #678c53;
+  border-radius: 5px 5px 5px 15px;
+  box-shadow: inset 70px 0px 70px -25px #D4E4AD, inset -70px 0px 70px -25px #D4E4AD;
+}
+
+.CheckListForm__ButtonCreateFirstTask:hover {
+  background-color: #D4E4AD;
 }/*# sourceMappingURL=CheckListForm.css.map */

@@ -1,13 +1,25 @@
 
 
 const CheckListForm = (elMain, activeCheckList, event) => {
-    let checkListData = JSON.parse(localStorage.getItem(activeCheckList));
+    let checkListData = getCheckLisitData(activeCheckList);
 
     const cbOpenCreateOrUpdateTaskForm = () => {
         updateMain('OpenCreateOrUpdateTaskForm');   // Вызываем функцию обновления зоны Main
-    }
+    };
 
-    elMain.appendChild(CheckList__NameLine(checkListData.CheckListName, cbOpenCreateOrUpdateTaskForm));
+    const cbOpenCreateOrUpdateCheckListForm = () => {
+        console.log(activeCheckList)
+        elMain.innerHTML = '';
+        CreateOrUpdateCheckListForm(elMain, activeCheckList);
+    };
+
+    elMain.appendChild(
+        CheckList__NameLine(
+            checkListData.CheckListName,
+            cbOpenCreateOrUpdateCheckListForm,
+            cbOpenCreateOrUpdateTaskForm
+        )
+    );
 
     const cbOnClick__TaskLine__Edit = (taskName, Checked) => {
         // CreateOrUpdateTaskForm(elMain, taskName, checkListData, Checked);   // Вызываем функцию обновления зоны Main
@@ -29,12 +41,19 @@ const CheckListForm = (elMain, activeCheckList, event) => {
         console.log('delete task')
         DeleteTask(checkListData, taskName, Checked);
         updateMain('AllTasks', elMain);
-    }
-    if (checkListData.ActiveTasks && checkListData.ClosedTasks) { //Есть активные или завершенные задачи
+    };
+    console.log(checkListData.ActiveTasks.length !== 0)
+    console.log(checkListData.ClosedTasks.length !== 0)
+    console.log(checkListData.ActiveTasks.length !== 0 || checkListData.ClosedTasks.length !== 0)
+    if (checkListData.ActiveTasks.length !== 0 || checkListData.ClosedTasks.length !== 0) { //Есть активные или завершенные задачи
+        let elCheckListForm__TasksArea = document.createElement('div');
+        elCheckListForm__TasksArea.id = 'CheckListForm__TasksArea';
+        elCheckListForm__TasksArea.className = 'CheckListForm__TasksArea';
+
         if (event === 'AllTasks') {//Есть активные или завершенные задачи и нужно показать их все
             if (checkListData.ActiveTasks) {
                 checkListData.ActiveTasks.forEach((task) => {
-                    elMain.appendChild(
+                    elCheckListForm__TasksArea.appendChild(
                         CheckList__TaskLine(
                             task.taskName,
                             false,
@@ -48,7 +67,7 @@ const CheckListForm = (elMain, activeCheckList, event) => {
 
             if (checkListData.ClosedTasks) {
                 checkListData.ClosedTasks.forEach((task) => {
-                    elMain.appendChild(
+                    elCheckListForm__TasksArea.appendChild(
                         CheckList__TaskLine(
                             task.taskName,
                             true,
@@ -62,7 +81,7 @@ const CheckListForm = (elMain, activeCheckList, event) => {
         if (event === 'ActiveTasks') {//Есть активные или завершенные задачи и нужно показать только активные
             if (checkListData.ActiveTasks) {
                 checkListData.ActiveTasks.forEach((task) => {
-                    elMain.appendChild(
+                    elCheckListForm__TasksArea.appendChild(
                         CheckList__TaskLine(
                             task.taskName,
                             false,
@@ -77,7 +96,7 @@ const CheckListForm = (elMain, activeCheckList, event) => {
         if (event === 'ClosedTasks') {//Есть активные или завершенные задачи и нужно показать только завершенные
             if (checkListData.ClosedTasks) {
                 checkListData.ClosedTasks.forEach((task) => {
-                    elMain.appendChild(
+                    elCheckListForm__TasksArea.appendChild(
                         CheckList__TaskLine(
                             task.taskName,
                             true,
@@ -88,9 +107,17 @@ const CheckListForm = (elMain, activeCheckList, event) => {
                 });
             }
         }
+        elMain.appendChild(elCheckListForm__TasksArea);
     }
     else {  // задач нет
-
+        elMain.appendChild(
+            Button({
+                id: 'CheckListForm__ButtonCreateFirstTask',
+                className: 'CheckListForm__ButtonCreateFirstTask roboto-black',
+                text: '+ Создать первую задачу',
+                onClick: cbOpenCreateOrUpdateTaskForm,
+            })
+        );
     }
 
 

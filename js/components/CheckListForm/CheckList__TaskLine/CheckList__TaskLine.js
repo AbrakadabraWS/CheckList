@@ -10,7 +10,7 @@ const CheckList__TaskLine = (
 
     let elCheckList__TaskLine = document.createElement('div');
     elCheckList__TaskLine.id = 'CheckList__TaskLine';
-    elCheckList__TaskLine.className = 'LineBox';
+    elCheckList__TaskLine.className = 'LineBox CheckList__TaskLine';
 
     let cbOnClickCheckButton = () => {
         var elCheckList__TaskLine__CheckButton = document.getElementById(`CheckList__TaskLine__CheckButton__${name}`);

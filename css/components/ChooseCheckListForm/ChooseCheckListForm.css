@@ -1,1 +1,25 @@
-/*# sourceMappingURL=ChooseCheckListForm.css.map */
+.ChooseCheckListForm__ButtonsArea {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-basis: 0;
+  justify-content: flex-start;
+  align-content: flex-start;
+  overflow-y: auto;
+}
+
+.ChooseCheckListForm__ButtonsArea::-webkit-scrollbar {
+  width: 8px;
+  background-color: #D4E4AD;
+}
+
+.ChooseCheckListForm__ButtonsArea::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #678c53;
+}
+
+.ChooseCheckListForm__ButtonsArea::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px #D4E4AD;
+  border-radius: 4px;
+  background-color: #ffffff;
+}/*# sourceMappingURL=ChooseCheckListForm.css.map */

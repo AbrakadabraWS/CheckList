@@ -4,6 +4,7 @@ const TextField__MainLine = ({
     LableText = '',
     TextFieldPlaceholder = '',
     TextFieldValue = '',
+    MaxLength,
     onChange = () => { },
     onInput = () => { },
 }) => {
@@ -27,7 +28,7 @@ const TextField__MainLine = ({
         placeholder: TextFieldPlaceholder,
         required: true,
         value: TextFieldValue,
-        // maxLength = null,
+        maxLength: MaxLength,
         // minLength = null,
         // pattern = null,
         // readOnly = false,

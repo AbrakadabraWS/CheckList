@@ -12,6 +12,7 @@ const TextArea = ({
     onChange,
     onInput
 }) => {
+    console.log(value)
 
     let elInput = document.createElement('textarea');
     elInput.id = id;
@@ -19,7 +20,7 @@ const TextArea = ({
     elInput.name = name;
     elInput.placeholder = placeholder;
     elInput.required = required;
-    elInput.innerText = value;
+    elInput.value = value;
     if (maxLength) {
         elInput.maxLength = maxLength;
     }

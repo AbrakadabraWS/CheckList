@@ -1,20 +1,16 @@
 
 const CreateOrUpdateCheckListForm = (elMain, activeCheckList) => {
-    console.log('object')
-    let valueLineName = '';
+    console.log(activeCheckList)
+    let checkListName = activeCheckList || '';
     // *** Заголовок ***
     elMain.appendChild(MainHeader(activeCheckList ? 'Редактирование чек-листа' : `Создание чек-листа`));
 
     const cbChangeValueLineName__TextField = (event) => {
-        console.log(event.target.value)
-        valueLineName = event.target.value;
+        checkListName = event.target.value;
 
     }
 
     const cbInputValueLineName__TextField = (event) => {
-        console.log(event.target.value)
-        console.log(Boolean(event.target.value))
-
         if (event.target.value) {
             var elCreateOrUpdateCheckListForm__ApplyButton__Buttons__MainLine = document.getElementById('CreateOrUpdateCheckListForm__ApplyButton__Buttons__MainLine');
             elCreateOrUpdateCheckListForm__ApplyButton__Buttons__MainLine.disabled = false;
@@ -35,8 +31,9 @@ const CreateOrUpdateCheckListForm = (elMain, activeCheckList) => {
         TextField__MainLine({
             id: 'CreateOrUpdateCheckListForm',
             LableText: 'Название чек-листа:',
-            TextFieldPlaceholder: 'Введите название чек-листа...',
-            TextFieldValue: valueLineName,
+            TextFieldPlaceholder: 'Введите название чек-листа (не более 25 символов)...',
+            TextFieldValue: checkListName,
+            MaxLength: 25,
             onChange: cbChangeValueLineName__TextField,
             onInput: cbInputValueLineName__TextField,
         })
@@ -51,22 +48,31 @@ const CreateOrUpdateCheckListForm = (elMain, activeCheckList) => {
 
     // +++ Кнопка: Готово
     const cbCreateOrUpdateCheckListForm__LineButtons__ApplyButton = () => {
-        if (CreateNewCheckList(valueLineName) === 'The checklist has been created') {
+        if (activeCheckList) {
+            if (activeCheckList !== checkListName) {
+                EditCheckListName(activeCheckList, checkListName);
+            }
             updateMain('AllTasks', elMain);
         }
         else {
-            let elCreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons = document.getElementById('CreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons');
-            if (elCreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons) {
-                let elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage = document.getElementById('CreateOrUpdateCheckListForm__LineButtons__ErrorMessage');
-                if (!elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage) {
-                    elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage = document.createElement('div');
-                    elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage.id = 'CreateOrUpdateCheckListForm__LineButtons__ErrorMessage';
-                    elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage.className = 'EndLineBox__ErrorMessage roboto-regular';
-                }
-                elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage.innerText = 'Чек-лист с таким именем уже существует!';
-                elCreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons.prepend(elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage);
+            if (CreateNewCheckList(checkListName) === 'The checklist has been created') {
+                updateButtonsStyles('AllTasks');
+                updateMain('AllTasks', elMain);
             }
+            else {
+                let elCreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons = document.getElementById('CreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons');
+                if (elCreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons) {
+                    let elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage = document.getElementById('CreateOrUpdateCheckListForm__LineButtons__ErrorMessage');
+                    if (!elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage) {
+                        elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage = document.createElement('div');
+                        elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage.id = 'CreateOrUpdateCheckListForm__LineButtons__ErrorMessage';
+                        elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage.className = 'EndLineBox__ErrorMessage roboto-regular';
+                    }
+                    elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage.innerText = 'Чек-лист с таким именем уже существует!';
+                    elCreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons.prepend(elCreateOrUpdateCheckListForm__LineButtons__ErrorMessage);
+                }
 
+            }
         }
     }
 
@@ -81,7 +87,7 @@ const CreateOrUpdateCheckListForm = (elMain, activeCheckList) => {
             CreateOrUpdateCheckListForm__ApplyButton: { // id `${Button_id}__Buttons__MainLine` => CreateOrUpdateCheckListForm__ApplyButton__Buttons__MainLine
                 text: 'Готово',
                 variant: 'Success',
-                disabled: true,
+                disabled: !Boolean(checkListName),
                 onClick: cbCreateOrUpdateCheckListForm__LineButtons__ApplyButton,
             }
         }

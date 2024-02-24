@@ -11,9 +11,19 @@ $ChooseCheckListForm__Button--FontColor: #678c53;
     justify-content: center;
     width: 250px;
     height: 250px;
+    margin: 2px;
     box-sizing: border-box;
     border: 4px solid $ChooseCheckListForm__Button--BorderColor;
     border-radius: 15px;
+}
+
+.ChooseCheckListForm__Button--Active {
+    @extend .ChooseCheckListForm__Button;
+    box-shadow:
+        inset 3px 3px 15px 0px $ChooseCheckListForm__Button--BorderColor,
+        inset -3px -3px 15px 0px $ChooseCheckListForm__Button--BorderColor,
+        inset 15px 15px 15px 1px $ChooseCheckListForm__Button--bgColorHover,
+        inset -15px -15px 15px 1px $ChooseCheckListForm__Button--bgColorHover;
 }
 
 .ChooseCheckListForm__Button:hover {
@@ -21,7 +31,10 @@ $ChooseCheckListForm__Button--FontColor: #678c53;
 }
 
 .ChooseCheckListForm__Button__Text {
+    width: 200px;
     font-size: 20px;
+    text-align: center;
+    overflow-wrap: break-word;
     color: $ChooseCheckListForm__Button--FontColor;
 }
 

@@ -1,5 +1,12 @@
 $CheckSize: 16px;
 $LineBox--height: 38px;
+$scrollWidth: 10px;
+
+
+.CheckList__TaskLine {
+    width: calc(100% - ($scrollWidth + 2px));
+    margin-left: $scrollWidth;
+}
 
 .CheckList__TaskLine__CheckButton {
     display: flex;

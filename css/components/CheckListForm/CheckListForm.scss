@@ -1,3 +1,12 @@
+$CheckListForm__TasksArea--bgScrollbar: #D4E4AD;
+$CheckListForm__TasksArea--bgScrollbar-thumb: #678c53;
+
+$CheckListForm__ButtonCreateFirstTask--bgFirstColor: #ffffff;
+$CheckListForm__ButtonCreateFirstTask--bgSecondColor--Success: #D4E4AD;
+$CheckListForm__ButtonCreateFirstTask--BordersColor--Success: #678c53;
+
+$scrollWidth: 10px;
+
 .CreateCheckList__Text {
     display: flex;
     align-items: center;
@@ -5,4 +14,54 @@
     width: 100%;
     height: 50px;
     font-size: 30px;
+}
+
+.CheckListForm__TasksArea {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-basis: 0;
+    justify-content: flex-start;
+    align-content: flex-start;
+    overflow-y: auto;
+    scrollbar-gutter: stable
+}
+
+
+.CheckListForm__TasksArea::-webkit-scrollbar {
+    width: 8px;
+    background-color: $CheckListForm__TasksArea--bgScrollbar;
+}
+
+.CheckListForm__TasksArea::-webkit-scrollbar-thumb {
+
+    border-radius: 10px;
+    background-color: $CheckListForm__TasksArea--bgScrollbar-thumb;
+}
+
+.CheckListForm__TasksArea::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px $CheckListForm__TasksArea--bgScrollbar;
+    border-radius: 4px;
+    background-color: #ffffff;
+}
+
+.CheckListForm__ButtonCreateFirstTask {
+    height: 40px;
+    width: calc(100% - ($scrollWidth * 2));
+    margin-left: $scrollWidth;
+    margin-top: 4px;
+    padding-inline: 20px;
+    box-sizing: border-box;
+    background-color: $CheckListForm__ButtonCreateFirstTask--bgFirstColor;
+    font-size: 16px;
+    color: $CheckListForm__ButtonCreateFirstTask--BordersColor--Success;
+    border: 2px solid $CheckListForm__ButtonCreateFirstTask--BordersColor--Success;
+    border-radius: 5px 5px 5px 15px;
+    box-shadow:
+        inset 70px 0px 70px -25px $CheckListForm__ButtonCreateFirstTask--bgSecondColor--Success,
+        inset -70px 0px 70px -25px $CheckListForm__ButtonCreateFirstTask--bgSecondColor--Success;
+}
+
+.CheckListForm__ButtonCreateFirstTask:hover {
+    background-color: $CheckListForm__ButtonCreateFirstTask--bgSecondColor--Success;
 }
