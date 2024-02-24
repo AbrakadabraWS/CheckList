@@ -41,6 +41,14 @@ const CreateOrUpdateCheckListForm = (elMain, activeCheckList) => {
 
 
     // *** Последняя строка: Кнопка подтверждения создания/рерактирования чек-листа ***
+    // +++ Кнопка: Удалить
+    const cbCreateOrUpdateCheckListForm__LineButtons__DeleteButton = () => {
+        if (activeCheckList) {
+            deleteCheckList(activeCheckList);
+        }
+        updateMain('AllTasks', elMain);
+
+    }
     // +++ Кнопка: Отмена
     const cbCreateOrUpdateCheckListForm__LineButtons__CancelButton = () => {
         updateMain('AllTasks', elMain);
@@ -76,9 +84,14 @@ const CreateOrUpdateCheckListForm = (elMain, activeCheckList) => {
         }
     }
 
-    elMain.appendChild(Buttons__MainLine({ //`${LineId}__Buttons__MainLine__LineButtons` => CreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons
-        LineId: 'CreateOrUpdateCheckListForm',
-        Buttons: {
+    let Buttons__MainLine_Buttons
+    if (Boolean(checkListName)) {
+        Buttons__MainLine_Buttons = {
+            CreateOrUpdateCheckListForm__DeleteButton: {// id `${Button_id}__Buttons__MainLine` => CreateOrUpdateCheckListForm__DeleteButton__Buttons__MainLine
+                text: 'Удалить',
+                variant: 'Error',
+                onClick: cbCreateOrUpdateCheckListForm__LineButtons__DeleteButton,
+            },
             CreateOrUpdateCheckListForm__CancelButton: {// id `${Button_id}__Buttons__MainLine` => CreateOrUpdateCheckListForm__CancelButton__Buttons__MainLine
                 text: 'Отмена',
                 variant: 'Error',
@@ -91,7 +104,29 @@ const CreateOrUpdateCheckListForm = (elMain, activeCheckList) => {
                 onClick: cbCreateOrUpdateCheckListForm__LineButtons__ApplyButton,
             }
         }
-    }))
+    }
+    else {
+        Buttons__MainLine_Buttons = {
+            CreateOrUpdateCheckListForm__CancelButton: {// id `${Button_id}__Buttons__MainLine` => CreateOrUpdateCheckListForm__CancelButton__Buttons__MainLine
+                text: 'Отмена',
+                variant: 'Error',
+                onClick: cbCreateOrUpdateCheckListForm__LineButtons__CancelButton,
+            },
+            CreateOrUpdateCheckListForm__ApplyButton: { // id `${Button_id}__Buttons__MainLine` => CreateOrUpdateCheckListForm__ApplyButton__Buttons__MainLine
+                text: 'Готово',
+                variant: 'Success',
+                disabled: !Boolean(checkListName),
+                onClick: cbCreateOrUpdateCheckListForm__LineButtons__ApplyButton,
+            }
+        }
+    }
+
+    elMain.appendChild(
+        Buttons__MainLine({ //`${LineId}__Buttons__MainLine__LineButtons` => CreateOrUpdateCheckListForm__Buttons__MainLine__LineButtons
+            LineId: 'CreateOrUpdateCheckListForm',
+            Buttons: Buttons__MainLine_Buttons,
+        })
+    );
 
 
 

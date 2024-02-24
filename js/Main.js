@@ -18,6 +18,11 @@ const updateMain = (event, elMain = document.getElementById('Main')) => {
         event = 'ChooseCheckListForm';
     }
 
+    if (activeCheckList === '') {
+        updateButtonsStyles('AllСheckLists')
+        event = 'ChooseCheckListForm';
+    }
+
     switch (event) {
         case 'AllTasks':
         case 'ActiveTasks':
